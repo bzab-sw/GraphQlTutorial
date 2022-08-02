@@ -1,13 +1,19 @@
-import express from 'express'
-import { buildSchema } from 'graphql';
-import { graphqlHTTP } from 'express-graphql';
 
-// Construct a schema, using GraphQL schema language
-var schema = buildSchema(`
-  type Query {
-    hello: String
-  }
-`);
+import path from 'path';
+import { join } from 'path'
+import express from 'express'
+import { graphqlHTTP } from 'express-graphql';
+import { GraphQLFileLoader } from '@graphql-tools/graphql-file-loader'
+import { loadSchema } from '@graphql-tools/load';
+import {fileURLToPath} from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Load schema from the file
+const schema = await loadSchema(join(__dirname, './schemas/schema.graphql'), {
+  loaders: [new GraphQLFileLoader()]
+})
 
 // The root provides a resolver function for each API endpoint
 var root = {

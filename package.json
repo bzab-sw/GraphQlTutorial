@@ -1,16 +1,21 @@
 {
+  "type": "module",
   "dependencies": {
+    "@graphql-tools/graphql-file-loader": "^7.5.0",
+    "@graphql-tools/load": "^7.7.1",
     "express": "^4.18.1",
     "express-graphql": "^0.12.0",
     "graphql": "^15.8.0"
   },
   "scripts": {
-    "build": "tsc",
-    "start": "tsc & node dist/index.js"
+    "copyschemas": "copyfiles -u 1 schemas/**/*.graphql dist/schemas",
+    "build": "tsc && npm run copyschemas",
+    "start": "npm run build && node dist/index.js"
   },
   "devDependencies": {
     "@types/express": "^4.17.13",
     "@types/express-graphql": "^0.9.0",
-    "@types/graphql": "^14.5.0"
+    "@types/graphql": "^14.5.0",
+    "copyfiles": "^2.4.1"
   }
 }
