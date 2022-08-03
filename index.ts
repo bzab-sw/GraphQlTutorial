@@ -1,19 +1,13 @@
 import { GraphQLFileLoader } from '@graphql-tools/graphql-file-loader'
 import { loadSchema } from '@graphql-tools/load';
 import { addResolversToSchema } from '@graphql-tools/schema';
-import Query from './resolvers/query';
+import resolvers from './resolvers/resolvers';
 import { Server } from './server';
-import dateType from './types/myDate';
 
 // Load schema from the file
 const schema = await loadSchema('./schemas/**/*.graphql', {
   loaders: [new GraphQLFileLoader()]
 })
-
-const resolvers = {
-  Query,
-  MyDate: dateType
-};
 
 const schemaWithResolvers = addResolversToSchema({
   schema,
