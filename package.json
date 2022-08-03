@@ -10,7 +10,7 @@
   "scripts": {
     "copyschemas": "copyfiles -u 1 schemas/**/*.graphql dist/schemas",
     "build": "tsc && npm run copyschemas",
-    "start": "npm run build && node dist/index.js"
+    "start": "npm run build && node --experimental-specifier-resolution=node dist/index.js"
   },
   "devDependencies": {
     "@types/express": "^4.17.13",
