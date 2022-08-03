@@ -2,4 +2,6 @@ type Node {
   id: ID!
   name: String!
   ip: String!
+  configTypes: [String!]!
+  comments: String
 }
