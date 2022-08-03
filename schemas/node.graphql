@@ -4,4 +4,5 @@ type Node {
   ip: String!
   configTypes: [String!]!
   comments: String
+  status: String
 }
