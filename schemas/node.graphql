@@ -1,8 +1,14 @@
+enum NodeStatus {
+  Unknown
+  Up
+  Down
+}
+
 type Node {
   id: ID!
   name: String!
   ip: String!
   configTypes: [String!]!
   comments: String
-  status: String
+  status: NodeStatus!
 }
