@@ -1,9 +1,9 @@
 import { Entity } from "./entity"
 
 export enum NodeStatus {
-    Unknown,
-    Up,
-    Down
+    Unknown = "Unknown",
+    Up = "Up",
+    Down = "Down"
 }
 
 export interface Node extends Entity<number> {
