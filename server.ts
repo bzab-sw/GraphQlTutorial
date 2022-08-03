@@ -3,7 +3,7 @@ import { graphqlHTTP } from "express-graphql";
 import { GraphQLSchema } from "graphql";
 
 export class Server {
-    constructor(private schema: GraphQLSchema, private root: any) {
+    constructor(private schema: GraphQLSchema) {
 
     }
 
@@ -11,7 +11,6 @@ export class Server {
         var app = express();
         app.use('/graphql', graphqlHTTP({
             schema: this.schema,
-            rootValue: this.root,
             graphiql: true,
         }));
         app.listen(4000);

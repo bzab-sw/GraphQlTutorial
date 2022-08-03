@@ -45,3 +45,5 @@ export class ConfigsDal extends Repo<Config, number> {
         return this.entities.filter(c => c.nodeId === nodeId)
     }
 }
+
+export const configDalInstance = new ConfigsDal();
