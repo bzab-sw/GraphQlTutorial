@@ -1,3 +1,5 @@
 type Node {
   id: ID!
+  name: String!
+  ip: String!
 }
