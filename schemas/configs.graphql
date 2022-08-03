@@ -1,0 +1,6 @@
+type Config {
+     id: ID!
+     nodeId: Int!
+     title: String!
+     downloadTime: String!
+}

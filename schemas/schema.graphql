@@ -1,3 +1,4 @@
 type Query {
     nodes: [Node]
+    configs: [Config]
 }
