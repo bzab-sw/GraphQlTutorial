@@ -3,6 +3,7 @@ import { loadSchema } from '@graphql-tools/load';
 import { addResolversToSchema } from '@graphql-tools/schema';
 import Query from './resolvers/query';
 import { Server } from './server';
+import dateType from './types/myDate';
 
 // Load schema from the file
 const schema = await loadSchema('./schemas/**/*.graphql', {
@@ -10,7 +11,8 @@ const schema = await loadSchema('./schemas/**/*.graphql', {
 })
 
 const resolvers = {
-  Query
+  Query,
+  MyDate: dateType
 };
 
 const schemaWithResolvers = addResolversToSchema({
