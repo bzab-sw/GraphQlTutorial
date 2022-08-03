@@ -24,3 +24,5 @@ export class NodesDal extends Repo<Node, number> {
         });
     }
 }
+
+export const nodesDalInstance = new NodesDal();
