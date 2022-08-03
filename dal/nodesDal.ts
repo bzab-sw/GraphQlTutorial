@@ -20,7 +20,7 @@ export class NodesDal extends Repo<Node, number> {
             name: "Test2",
             configTypes: ["Running", "DeviceState"],
             comments: null,
-            status: NodeStatus.Up
+            status: NodeStatus.Down
         });
     }
 }
