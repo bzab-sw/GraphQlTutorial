@@ -1,4 +1,4 @@
-import { Node } from '../model/node'
+import { Node, NodeStatus } from '../model/node'
 import { Repo } from './repo'
 
 export class NodesDal extends Repo<Node, number> {
@@ -10,7 +10,8 @@ export class NodesDal extends Repo<Node, number> {
             ip: "0.0.0.1",
             name: "Test1",
             configTypes: ["Running", "Startup"],
-            comments: "My first test node."
+            comments: "My first test node.",
+            status: NodeStatus.Up
         });
 
         this.add({
@@ -18,7 +19,8 @@ export class NodesDal extends Repo<Node, number> {
             ip: "0.0.0.2",
             name: "Test2",
             configTypes: ["Running", "DeviceState"],
-            comments: null
+            comments: null,
+            status: NodeStatus.Up
         });
     }
 }
