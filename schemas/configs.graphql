@@ -1,6 +1,6 @@
 type Config {
      id: ID!
-     nodeId: Int!
+     node: Node!
      title: String!
      downloadTime: MyDate!
 }
