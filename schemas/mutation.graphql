@@ -1,3 +1,4 @@
 type Mutation {
     addConfig(id: ID!, nodeId: Int!, title: String!, downloadTime: MyDate!): ID!
+    addNode(node: NodeInput!): Node!
 }

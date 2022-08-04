@@ -1,6 +1,6 @@
 import { configDalInstance } from '../dal/configsDal';
 import { nodesDalInstance } from '../dal/nodesDal';
-import { Node } from '../model/node'
+import { Node, NodeStatus } from '../model/node'
 import { GqlConfigWrap } from './configs';
 
 export class GqlNodeWrap {
@@ -37,4 +37,20 @@ export class GqlNodeWrap {
 export function nodes(obj: any, args: any, context: any, info: any): GqlNodeWrap[] {
     return nodesDalInstance.getAll()
         .map(n => new GqlNodeWrap(n));
+}
+
+export function addNode(obj: any, args: any, context: any, info: any): GqlNodeWrap {
+    const nodeInput = args.node;
+
+    const entity: Node = {
+        configTypes: nodeInput.configTypes,
+        id: parseInt(nodeInput.id),
+        name: nodeInput.name,
+        ip: nodeInput.ip,
+        status: NodeStatus.Unknown
+    };
+
+    nodesDalInstance.add(entity);
+    const node = nodesDalInstance.get(entity.id);
+    return new GqlNodeWrap(node);
 }

@@ -1,7 +1,9 @@
 import { addConfig } from "./configs";
+import { addNode } from "./nodes";
 
 const Mutation = {
-    addConfig
+    addConfig,
+    addNode
 }
 
 export default Mutation;

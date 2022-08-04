@@ -13,3 +13,10 @@ type Node {
   status: NodeStatus!
   configs: [Config!]!
 }
+
+input NodeInput {
+  id: ID!
+  name: String!
+  ip: String!
+  configTypes: [String!]!
+}
