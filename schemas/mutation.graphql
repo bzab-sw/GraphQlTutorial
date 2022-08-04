@@ -1,3 +1,3 @@
 type Mutation {
-    toBeRemoved(smth: String): String
+    addConfig(id: ID!, nodeId: Int!, title: String!, downloadTime: MyDate!): ID!
 }

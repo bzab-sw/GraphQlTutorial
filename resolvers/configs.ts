@@ -35,3 +35,15 @@ export function configsOfNode(obj: any, args: any, context: any, info: any): Gql
     return configDalInstance.getFromNode(nodeId)
         .map(c => new GqlConfigWrap(c));
 }
+
+export function addConfig(obj: any, args: any, context: any, info: any): number {
+    const entity: Config = {
+        id: parseInt(args.id),
+        nodeId: args.nodeId,
+        downloadTime: args.downloadTime,
+        title: args.title
+    };
+
+    configDalInstance.add(entity);
+    return entity.id;
+}
