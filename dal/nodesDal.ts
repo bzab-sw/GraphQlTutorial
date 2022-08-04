@@ -2,6 +2,10 @@ import { Node, NodeStatus } from '../model/node'
 import { Repo } from './repo'
 
 export class NodesDal extends Repo<Node, number> {
+    public get EntityName(): string {
+        return "Node";
+    }
+
     constructor() {
         super();
 
