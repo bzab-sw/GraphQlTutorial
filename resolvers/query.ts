@@ -1,5 +1,4 @@
-import configs from "./configs";
-import configsOfNode from "./configsOfNode";
+import { configs, configsOfNode } from "./configs";
 import nodes from "./nodes";
 
 // The root provides a resolver function for each API endpoint

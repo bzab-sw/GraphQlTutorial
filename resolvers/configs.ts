@@ -25,7 +25,13 @@ class GqlConfigWrap {
     }
 }
 
-export default function configs(): GqlConfigWrap[] {
+export function configs(): GqlConfigWrap[] {
     return configDalInstance.getAll()
+        .map(c => new GqlConfigWrap(c));
+}
+
+export function configsOfNode(obj: any, args: any, context: any, info: any): GqlConfigWrap[] {
+    const nodeId = Number(args.nodeId);
+    return configDalInstance.getFromNode(nodeId)
         .map(c => new GqlConfigWrap(c));
 }
