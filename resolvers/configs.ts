@@ -3,7 +3,7 @@ import { nodesDalInstance } from "../dal/nodesDal";
 import { Config } from "../model/config";
 import { Node } from "../model/node";
 
-class GqlConfigWrap {
+export class GqlConfigWrap {
     constructor(private config: Config) {
 
     }

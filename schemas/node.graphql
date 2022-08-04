@@ -11,4 +11,5 @@ type Node {
   configTypes: [String!]!
   comments: String
   status: NodeStatus!
+  configs: [Config!]!
 }
