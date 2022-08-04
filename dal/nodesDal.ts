@@ -23,7 +23,6 @@ export class NodesDal extends Repo<Node, number> {
             ip: "0.0.0.2",
             name: "Test2",
             configTypes: ["Running", "DeviceState"],
-            comments: null,
             status: NodeStatus.Down
         });
     }
