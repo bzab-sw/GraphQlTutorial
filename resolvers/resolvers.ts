@@ -1,6 +1,7 @@
+import { IResolvers } from "@graphql-tools/utils";
 import Query from "./query";
 
-const resolvers = {
+const resolvers: IResolvers = {
     Query
   };
 
