@@ -35,12 +35,6 @@ export function configs(obj: any, args: any, context: any, info: any): GqlConfig
         .map(c => new GqlConfigWrap(c));
 }
 
-export function configsOfNode(obj: any, args: any, context: any, info: any): GqlConfigWrap[] {
-    const nodeId = Number(args.nodeId);
-    return configDalInstance.getFromNode(nodeId)
-        .map(c => new GqlConfigWrap(c));
-}
-
 export function addConfig(obj: any, args: any, context: any, info: any): number {
     const entity: Config = {
         id: parseInt(args.id),
