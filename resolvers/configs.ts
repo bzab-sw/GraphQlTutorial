@@ -25,7 +25,12 @@ export class GqlConfigWrap {
     }
 }
 
-export function configs(): GqlConfigWrap[] {
+export function configs(obj: any, args: any, context: any, info: any): GqlConfigWrap[] {
+    const id = args.id;
+    if (id != null) {
+        return [new GqlConfigWrap(configDalInstance.get(Number(id)))];
+    }
+
     return configDalInstance.getAll()
         .map(c => new GqlConfigWrap(c));
 }

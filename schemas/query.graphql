@@ -1,5 +1,5 @@
 type Query {
-    nodes: [Node]
-    configs: [Config]
+    nodes(id: ID): [Node]
+    configs(id: ID): [Config]
     configsOfNode(nodeId: Int!): [Config!]!
 }

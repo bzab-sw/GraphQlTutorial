@@ -16,6 +16,10 @@ export class GqlNodeWrap {
         return this.node.name
     }
 
+    public get ip(): string {
+        return this.node.ip
+    }
+
     public get configTypes(): string[] {
         return this.node.configTypes
     }
@@ -35,6 +39,11 @@ export class GqlNodeWrap {
 }
 
 export function nodes(obj: any, args: any, context: any, info: any): GqlNodeWrap[] {
+    const id = args.id;
+    if (id != null) {
+        return [new GqlNodeWrap(nodesDalInstance.get(Number(id)))];
+    }
+
     return nodesDalInstance.getAll()
         .map(n => new GqlNodeWrap(n));
 }
