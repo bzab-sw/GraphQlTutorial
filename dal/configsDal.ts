@@ -2,6 +2,10 @@ import { Config } from "../model/config";
 import { Repo } from "./repo";
 
 export class ConfigsDal extends Repo<Config, number> {
+    public get EntityName(): string {
+        return "Config";
+    }
+
     constructor() {
         super();
 
@@ -42,7 +46,8 @@ export class ConfigsDal extends Repo<Config, number> {
     }
 
     public getFromNode(nodeId: number): Config[] {
-        return this.entities.filter(c => c.nodeId === nodeId)
+        console.log(`Getting all configs from node ID '${nodeId}'.`);
+        return this.entities.filter(c => c.nodeId === nodeId);
     }
 }
 
