@@ -1,1 +1,4 @@
+"""
+Date and time.
+"""
 scalar MyDate

@@ -1,22 +1,73 @@
+"""
+Possible node status.
+"""
 enum NodeStatus {
   Unknown
   Up
   Down
 }
 
+"""
+Network device with IP.
+"""
 type Node {
+  """
+  Internal device ID.
+  """
   id: ID!
+
+  """
+  Caption of the device.
+  """
   name: String!
+
+  """
+  IP of the device.
+  """
   ip: String!
+
+  """
+  Available config types.
+  """
   configTypes: [String!]!
+
+  """
+  User defined comments.
+  """
   comments: String
+
+  """
+  Node status.
+  """
   status: NodeStatus!
+
+  """
+  Downloaded configs.
+  """
   configs: [Config!]!
 }
 
+"""
+New node data.
+"""
 input NodeInput {
+  """
+  Internal device ID.
+  """
   id: ID!
+
+  """
+  Caption of the device.
+  """
   name: String!
+
+  """
+  IP of the device.
+  """
   ip: String!
+
+  """
+  Available config types.
+  """
   configTypes: [String!]!
 }

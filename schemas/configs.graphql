@@ -1,6 +1,24 @@
+"""
+Configuration data download from a device.
+"""
 type Config {
+     """
+     Internal config ID.
+     """
      id: ID!
+
+     """
+     Parent node.
+     """
      node: Node!
+
+     """
+     Title of the config.
+     """
      title: String!
+
+     """
+     When it was downloaded.
+     """
      downloadTime: MyDate!
 }

@@ -1,4 +1,11 @@
 type Mutation {
+    """
+    Adds a new config to the DB.
+    """
     addConfig(id: ID!, nodeId: Int!, title: String!, downloadTime: MyDate!): ID!
+
+    """
+    Adds a new node to the DB.
+    """
     addNode(node: NodeInput!): Node!
 }
