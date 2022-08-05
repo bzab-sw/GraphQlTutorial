@@ -1,3 +1,5 @@
+import { GraphQLResolveInfo } from "graphql"
+
 export interface RequestInfo {
     host?: string
     method?: string
@@ -9,7 +11,7 @@ export interface Header {
     value: string
 }
 
-export function requestInfo(obj: any, args: any, context: any, info: any): RequestInfo {
+export function requestInfo(obj: any, args: any, context: any, info: GraphQLResolveInfo): RequestInfo {
     const reqHeaders = context.headers;
     const keys = Object.getOwnPropertyNames(reqHeaders);
     const headers: Header[] = [];

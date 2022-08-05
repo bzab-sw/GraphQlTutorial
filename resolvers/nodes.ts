@@ -1,3 +1,4 @@
+import { GraphQLResolveInfo } from 'graphql';
 import { configDalInstance } from '../dal/configsDal';
 import { nodesDalInstance } from '../dal/nodesDal';
 import { Node, NodeStatus } from '../model/node'
@@ -38,7 +39,7 @@ export class GqlNodeWrap {
     }
 }
 
-export function nodes(obj: any, args: any, context: any, info: any): GqlNodeWrap[] {
+export function nodes(obj: any, args: any, context: any, info: GraphQLResolveInfo): GqlNodeWrap[] {
     const id = args.id;
     if (id != null) {
         return [new GqlNodeWrap(nodesDalInstance.get(Number(id)))];
@@ -48,7 +49,7 @@ export function nodes(obj: any, args: any, context: any, info: any): GqlNodeWrap
         .map(n => new GqlNodeWrap(n));
 }
 
-export function addNode(obj: any, args: any, context: any, info: any): GqlNodeWrap {
+export function addNode(obj: any, args: any, context: any, info: GraphQLResolveInfo): GqlNodeWrap {
     const nodeInput = args.node;
 
     const entity: Node = {

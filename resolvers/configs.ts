@@ -1,3 +1,4 @@
+import { GraphQLResolveInfo } from "graphql";
 import { configDalInstance } from "../dal/configsDal";
 import { nodesDalInstance } from "../dal/nodesDal";
 import { Config } from "../model/config";
@@ -25,7 +26,7 @@ export class GqlConfigWrap {
     }
 }
 
-export function configs(obj: any, args: any, context: any, info: any): GqlConfigWrap[] {
+export function configs(obj: any, args: any, context: any, info: GraphQLResolveInfo): GqlConfigWrap[] {
     const id = args.id;
     if (id != null) {
         return [new GqlConfigWrap(configDalInstance.get(Number(id)))];
@@ -35,7 +36,7 @@ export function configs(obj: any, args: any, context: any, info: any): GqlConfig
         .map(c => new GqlConfigWrap(c));
 }
 
-export function addConfig(obj: any, args: any, context: any, info: any): number {
+export function addConfig(obj: any, args: any, context: any, info: GraphQLResolveInfo): number {
     const entity: Config = {
         id: parseInt(args.id),
         nodeId: args.nodeId,
