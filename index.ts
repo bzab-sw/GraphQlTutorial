@@ -8,13 +8,13 @@ import { Server } from './server';
 // Load schema from the file
 const schema = await loadSchema('./schemas/**/*.graphql', {
   loaders: [new GraphQLFileLoader()]
-});
+})
 
 const schemaWithResolvers = addResolversToSchema({
   schema,
   resolvers
-});
-const schemaWithResolversAndDirectives = applyDirectives(schema);
+})
+const schemaWithResolversAndDirectives = applyDirectives(schemaWithResolvers);
 
 var server = new Server(schemaWithResolversAndDirectives);
 server.run();
