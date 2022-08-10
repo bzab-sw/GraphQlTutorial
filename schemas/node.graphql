@@ -52,11 +52,6 @@ New node data.
 """
 input NodeInput {
   """
-  Internal device ID.
-  """
-  id: ID!
-
-  """
   Caption of the device.
   """
   name: String!
