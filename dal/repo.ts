@@ -51,6 +51,10 @@ export abstract class Repo<T extends Entity<TId>, TId> {
 
     public async update(entity: T): Promise<void> {
         await this.mutex.runExclusive(() => {
+            if (entity.id == null) {
+                throw new TypeError("ID can't be empty.");
+            }
+
             console.log(`Updating a '${this.EntityName}' with ID '${entity.id}'.`);
 
             if (this.existsInternal(entity.id)) {
@@ -75,6 +79,10 @@ export abstract class Repo<T extends Entity<TId>, TId> {
     protected abstract getNextId(): TId;
 
     protected addInternal(entity: T) {
+        if (entity.id == null) {
+            throw new TypeError("ID can't be empty.");
+        }
+
         if (this.existsInternal(entity.id)) {
             throw new Error(`Entity with ID ${entity.id}} is already added.`);
         }
