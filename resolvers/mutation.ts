@@ -1,5 +1,3 @@
-const Mutation = {
+export const Mutation = {
 
 }
-
-export default Mutation;
