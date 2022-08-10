@@ -5,7 +5,7 @@ import { loadSchema } from '@graphql-tools/load';
 import { addResolversToSchema } from '@graphql-tools/schema';
 import { GraphQLSchema } from 'graphql';
 import { applyDirectives } from './directives/applyDirectives';
-import resolvers from './resolvers/resolvers';
+import { resolvers } from './resolvers/resolvers';
 
 async function buildSchema(): Promise<GraphQLSchema> {
   // Load schema from the file
