@@ -1,5 +1,5 @@
 type Query {
-    nodes(id: ID): [Node!]! @userAgentAuthorize(userAgent: "Mozilla")
-    configs(id: ID): [Config!]! @userAgentAuthorize(userAgent: "Mozilla")
+    nodes(id: ID): [Node!]!
+    configs(id: ID): [Config!]!
     requestInfo: RequestInfo!
 }

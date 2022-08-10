@@ -1,10 +1,8 @@
 import { GraphQLSchema } from "graphql";
-import { userAgentAuthorizeDirectiveHandler } from "./userAgentAuthorize";
 
 export type DirectiveHandler = (schema: GraphQLSchema) => GraphQLSchema; 
 
 const handlers: DirectiveHandler[] = [
-    userAgentAuthorizeDirectiveHandler
 ];
 
 export function applyDirectives(schema: GraphQLSchema): GraphQLSchema {
