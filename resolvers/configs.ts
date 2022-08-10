@@ -10,7 +10,7 @@ export class GqlConfigWrap {
     }
 
     public get id(): number {
-        return this.config.id;
+        return Number(this.config.id);
     }
 
     public get title(): string {
@@ -21,29 +21,28 @@ export class GqlConfigWrap {
         return this.config.downloadTime;
     }
 
-    public get node(): Node {
+    public get node(): Promise<Node> {
         return nodesDalInstance.get(this.config.nodeId);
     }
 }
 
-export function configs(obj: any, args: any, context: any, info: GraphQLResolveInfo): GqlConfigWrap[] {
+export async function configs(obj: any, args: any, context: any, info: GraphQLResolveInfo): Promise<GqlConfigWrap[]> {
     const id = args.id;
     if (id != null) {
-        return [new GqlConfigWrap(configDalInstance.get(Number(id)))];
+        const config = await configDalInstance.get(Number(id));
+        return [new GqlConfigWrap(config)];
     }
 
-    return configDalInstance.getAll()
-        .map(c => new GqlConfigWrap(c));
+    const all = await configDalInstance.getAll();
+    return all.map(c => new GqlConfigWrap(c));
 }
 
-export function addConfig(obj: any, args: any, context: any, info: GraphQLResolveInfo): number {
+export function addConfig(obj: any, args: any, context: any, info: GraphQLResolveInfo): Promise<number> {
     const entity: Config = {
-        id: parseInt(args.id),
         nodeId: args.nodeId,
         downloadTime: args.downloadTime,
         title: args.title
     };
 
-    configDalInstance.add(entity);
-    return entity.id;
+    return configDalInstance.addWithIncrement(entity);
 }

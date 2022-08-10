@@ -10,7 +10,7 @@ export class GqlNodeWrap {
     }
 
     public get id(): number {
-        return this.node.id
+        return Number(this.node.id)
     }
 
     public get name(): string {
@@ -33,34 +33,34 @@ export class GqlNodeWrap {
         return this.node.status
     }
 
-    public get configs(): GqlConfigWrap[] {
-        return configDalInstance.getFromNode(this.id)
-            .map(c => new GqlConfigWrap(c))
+    public async configs(obj: any, args: any, context: any, info: GraphQLResolveInfo): Promise<GqlConfigWrap[]> {
+        const all = await configDalInstance.getFromNode(this.id);
+        return all.map(c => new GqlConfigWrap(c))
     }
 }
 
-export function nodes(obj: any, args: any, context: any, info: GraphQLResolveInfo): GqlNodeWrap[] {
+export async function nodes(obj: any, args: any, context: any, info: GraphQLResolveInfo): Promise<GqlNodeWrap[]> {
     const id = args.id;
     if (id != null) {
-        return [new GqlNodeWrap(nodesDalInstance.get(Number(id)))];
+        const node = await nodesDalInstance.get(Number(id));
+        return [new GqlNodeWrap(node)];
     }
 
-    return nodesDalInstance.getAll()
-        .map(n => new GqlNodeWrap(n));
+    const all = await nodesDalInstance.getAll();
+    return all.map(n => new GqlNodeWrap(n));
 }
 
-export function addNode(obj: any, args: any, context: any, info: GraphQLResolveInfo): GqlNodeWrap {
+export async function addNode(obj: any, args: any, context: any, info: GraphQLResolveInfo): Promise<GqlNodeWrap> {
     const nodeInput = args.node;
 
     const entity: Node = {
         configTypes: nodeInput.configTypes,
-        id: parseInt(nodeInput.id),
         name: nodeInput.name,
         ip: nodeInput.ip,
         status: NodeStatus.Unknown
     };
 
-    nodesDalInstance.add(entity);
-    const node = nodesDalInstance.get(entity.id);
+    const id = await nodesDalInstance.addWithIncrement(entity);
+    const node = await nodesDalInstance.get(id);
     return new GqlNodeWrap(node);
 }
