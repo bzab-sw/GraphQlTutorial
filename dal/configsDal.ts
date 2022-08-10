@@ -46,7 +46,7 @@ export class ConfigsDal extends Repo<Config, number> {
     }
 
     protected getNextId(): number {
-        const ids = this.entities.map(e => e.id);
+        const ids: number[] = this.entities.map(e => Number(e.id));
         return Math.max(...ids) + 1;
     }
 
