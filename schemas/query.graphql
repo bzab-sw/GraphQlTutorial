@@ -1,5 +1,4 @@
 type Query {
     nodes(id: ID): [Node!]!
     configs(id: ID): [Config!]!
-    requestInfo: RequestInfo!
 }
