@@ -37,12 +37,18 @@ export async function configs(obj: any, args: any, context: any, info: GraphQLRe
     return all.map(c => new GqlConfigWrap(c));
 }
 
-export function addConfig(obj: any, args: any, context: any, info: GraphQLResolveInfo): Promise<number> {
+export async function addConfig(obj: any, args: any, context: any, info: GraphQLResolveInfo): Promise<number> {
+    const nodeId = Number(args.nodeId);
+    const nodeExists = await nodesDalInstance.exists(nodeId);
+    if (!nodeExists) {
+        throw new Error(`The node with ID ${nodeId} doesn't exist.`);
+    }
+    
     const entity: Config = {
-        nodeId: args.nodeId,
+        nodeId: nodeId,
         downloadTime: args.downloadTime,
         title: args.title
     };
 
-    return configDalInstance.addWithIncrement(entity);
+    return await configDalInstance.addWithIncrement(entity);
 }
