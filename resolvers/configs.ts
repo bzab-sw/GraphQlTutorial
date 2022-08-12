@@ -10,7 +10,7 @@ export class GqlConfigWrap {
     }
 
     public get id(): number {
-        return Number(this.config.id);
+        return this.config.id!
     }
 
     public get title(): string {
