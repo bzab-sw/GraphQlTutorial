@@ -10,7 +10,7 @@ export class GqlNodeWrap {
     }
 
     public get id(): number {
-        return Number(this.node.id)
+        return this.node.id!;
     }
 
     public get name(): string {
@@ -61,6 +61,6 @@ export async function addNode(obj: any, args: any, context: any, info: GraphQLRe
     };
 
     const id = await nodesDalInstance.addWithIncrement(entity);
-    const node = await nodesDalInstance.get(id);
-    return new GqlNodeWrap(node);
+    entity.id = id;
+    return new GqlNodeWrap(entity);
 }
